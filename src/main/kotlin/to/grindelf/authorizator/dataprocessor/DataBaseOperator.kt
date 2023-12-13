@@ -10,12 +10,13 @@ class DataBaseOperator(
 ) {
 
     companion object {
-        private val TABLE_NAME: String = "users"
+        private const val TABLE_NAME: String = "users"
     }
+
     /**
      * Creates a database table if it does not exist.
      */
-    fun createTable() {
+    fun createUsersTable() {
         val connection: Connection = DriverManager.getConnection(databaseUrl)
 
         connection.use {

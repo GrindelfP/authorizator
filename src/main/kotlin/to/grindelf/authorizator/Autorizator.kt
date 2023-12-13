@@ -1,37 +1,21 @@
 package to.grindelf.authorizator
 
 import javafx.application.Application
+import javafx.application.Application.launch
 import javafx.fxml.FXMLLoader
+import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.stage.FileChooser
 import javafx.stage.Stage
+import to.grindelf.authorizator.controllers.MainController
 import to.grindelf.authorizator.dataprocessor.DataBaseOperator
 import java.io.File
 
 object Autorizator {
 
-    private const val DATABASE_PATH: String = "src/main/resources/databases/users.db"
-    private const val DATABASE_URL: String = "jdbc:sqlite:$DATABASE_PATH"
-
     @JvmStatic
     fun main(args: Array<String>) {
-        val dataBaseOperator = DataBaseOperator(DATABASE_URL)
-
-        if (!File(DATABASE_PATH).exists()) dataBaseOperator.createTable()
-
-        val newUserLogin = "exampleUser"
-        val newUserPassword = "examplePassword"
-        dataBaseOperator.insertUser(newUserLogin, newUserPassword)
-
-        // Пытаемся авторизоваться
-        val loginAttempt = "exampleUser"
-        val passwordAttempt = "examplePassword"
-
-        if (dataBaseOperator.validator(loginAttempt, passwordAttempt)) {
-            println("Successfully logged in")
-        } else {
-            println("Login failed")
-        }
+        launch(AutorizatorApplication::class.java)
     }
 }
 
