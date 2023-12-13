@@ -1,0 +1,4 @@
+= Authorizator =
+
+== Description ==
+An example of working with a form of authorization and supporting database.
