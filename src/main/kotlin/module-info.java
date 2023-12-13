@@ -4,6 +4,7 @@ module to.grindelf.authorizator {
     requires kotlin.stdlib;
 
     requires org.kordamp.bootstrapfx.core;
+    requires java.sql;
 
     opens to.grindelf.authorizator to javafx.fxml;
     exports to.grindelf.authorizator;
