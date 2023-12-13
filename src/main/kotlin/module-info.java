@@ -8,4 +8,7 @@ module to.grindelf.authorizator {
 
     opens to.grindelf.authorizator to javafx.fxml;
     exports to.grindelf.authorizator;
+
+    opens to.grindelf.authorizator.controllers to javafx.fxml;
+
 }

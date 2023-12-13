@@ -20,11 +20,13 @@ object Autorizator {
 }
 
 class AutorizatorApplication : Application() {
-    override fun start(stage: Stage) {
-        val fxmlLoader = FXMLLoader(AutorizatorApplication::class.java.getResource("hello-view.fxml"))
-        val scene = Scene(fxmlLoader.load(), 320.0, 240.0)
-        stage.title = "Hello!"
-        stage.scene = scene
-        stage.show()
+    override fun start(primaryStage: Stage) {
+        val mainLoader = FXMLLoader(javaClass.getResource("main.fxml"))
+        val mainRoot: Parent = mainLoader.load()
+        val mainController = mainLoader.getController<MainController>()
+
+        primaryStage.title = "Authorization and Registration"
+        primaryStage.scene = Scene(mainRoot, 400.0, 300.0)
+        primaryStage.show()
     }
 }
