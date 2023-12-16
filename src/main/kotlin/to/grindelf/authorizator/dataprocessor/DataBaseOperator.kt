@@ -78,6 +78,8 @@ class DataBaseOperator(
      * or a null-user if there is no such user in database
      */
     private fun getUser(login: String): User {
+        if (login.contains("'")) login.replace("'", "")
+
         val connection: Connection = DriverManager.getConnection(databaseUrl)
 
         var user = User()

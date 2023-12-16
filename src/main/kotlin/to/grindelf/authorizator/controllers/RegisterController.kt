@@ -2,38 +2,40 @@ package to.grindelf.authorizator.controllers
 
 import javafx.fxml.FXML
 import javafx.scene.control.Alert
+import javafx.scene.control.Alert.AlertType
 import javafx.scene.control.PasswordField
 import javafx.scene.control.TextField
+import javafx.stage.Stage
 import to.grindelf.authorizator.dataprocessor.Processor
 
 class RegisterController {
     @FXML
-    private lateinit var usernameField: TextField
+    lateinit var loginField: TextField
+    @FXML
+    lateinit var passwordField: PasswordField
+    @FXML
+    lateinit var passwordConfirmField: PasswordField
 
     @FXML
-    private lateinit var passwordField: PasswordField
-
-    @FXML
-    private lateinit var confirmPasswordField: PasswordField
-
-    var registrationResult: String = ""
-
-    fun handleRegister() {
-        val login = usernameField.text
+    fun registerButtonClicked() {
+        val login = loginField.text
         val password = passwordField.text
-        val confirmPassword = confirmPasswordField.text
-
-        if (password == confirmPassword) {
-            Processor.insertUser(login, password)
-            registrationResult = "User registered successfully"
+        val passwordConfirm = passwordConfirmField.text
+        if (login.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty() || password != passwordConfirm) {
+            showAlert("Неверное заполнение полей для регистрации!")
         } else {
-            registrationResult = "Passwords do not match. Please try again."
+            Processor.insertUser(login, password)
+            showAlert("Успешная регистрация!")
+            val stage = passwordField.scene.window as Stage
+            stage.close()
         }
+    }
 
-        val alert = Alert(Alert.AlertType.INFORMATION)
-        alert.title = "Result"
+    private fun showAlert(message: String) {
+        val alert = Alert(AlertType.INFORMATION)
+        alert.title = "Information"
         alert.headerText = null
-        alert.contentText = registrationResult
+        alert.contentText = message
         alert.showAndWait()
     }
 }

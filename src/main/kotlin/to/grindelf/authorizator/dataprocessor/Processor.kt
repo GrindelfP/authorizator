@@ -1,7 +1,7 @@
 package to.grindelf.authorizator.dataprocessor
 
 object Processor {
-    private const val DATABASE_PATH: String = "src/main/resources/databases/diary.db"
+    const val DATABASE_PATH: String = "src/main/resources/databases/diary.db"
     private const val DATABASE_URL: String = "jdbc:sqlite:$DATABASE_PATH"
     const val USERS_TABLE_NAME: String = "users"
 
