@@ -1,34 +1,35 @@
 package to.grindelf.authorizator.controllers
 
 import javafx.fxml.FXML
-import javafx.scene.Scene
-import javafx.scene.control.PasswordField
-import javafx.scene.control.TextField
-import javafx.scene.control.Alert
-import javafx.scene.control.Alert.AlertType
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
+import javafx.scene.Scene
+import javafx.scene.control.Alert
+import javafx.scene.control.Alert.AlertType
+import javafx.scene.control.PasswordField
+import javafx.scene.control.TextField
 import javafx.stage.Stage
-import to.grindelf.authorizator.Diary
 import to.grindelf.authorizator.DiaryApplication
 import to.grindelf.authorizator.dataprocessor.Processor
 
 class MainController {
-    @FXML lateinit var loginField: TextField
-    @FXML lateinit var passwordField: PasswordField
+    @FXML
+    lateinit var loginField: TextField
+    @FXML
+    lateinit var passwordField: PasswordField
 
     @FXML
     fun loginButtonClicked() {
         val login = loginField.text
         val password = passwordField.text
         if (login.isEmpty() || password.isEmpty()) {
-            showAlert("Введите логин и пароль!")
+            showAlert(message = "Enter your login and password!", alertType = AlertType.WARNING)
         } else {
             val result = Processor.authorizeUser(login, password)
             if (result == "User authorized successfully") {
-                showAlert("Успешный вход!")
+                showAlert("Successful signing in!")
             } else {
-                showAlert("Неверные логин или пароль!")
+                showAlert( message = "Incorrect login or password!", alertType = AlertType.WARNING)
             }
         }
     }
@@ -44,12 +45,11 @@ class MainController {
         registerStage.scene = registerScene
         registerStage.show()
     }
+}
 
-    private fun showAlert(message: String) {
-        val alert = Alert(AlertType.INFORMATION)
-        alert.title = "Information"
-        alert.headerText = null
-        alert.contentText = message
-        alert.showAndWait()
-    }
+fun showAlert(message: String, alertType: AlertType = AlertType.INFORMATION) {
+    val alert = Alert(alertType)
+    alert.headerText = null
+    alert.contentText = message
+    alert.showAndWait()
 }
