@@ -9,6 +9,8 @@ import javafx.scene.control.Alert.AlertType
 import javafx.fxml.FXMLLoader
 import javafx.scene.Parent
 import javafx.stage.Stage
+import to.grindelf.authorizator.Diary
+import to.grindelf.authorizator.DiaryApplication
 import to.grindelf.authorizator.dataprocessor.Processor
 
 class MainController {
@@ -37,6 +39,8 @@ class MainController {
         val registerParent = registerLoader.load<Parent>()
         val registerScene = Scene(registerParent)
         val registerStage = Stage()
+        registerStage.height = DiaryApplication.WINDOW_HEIGHT
+        registerStage.width = DiaryApplication.WINDOW_HEIGHT
         registerStage.scene = registerScene
         registerStage.show()
     }

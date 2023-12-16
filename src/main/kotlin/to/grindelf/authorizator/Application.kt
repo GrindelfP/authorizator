@@ -20,8 +20,8 @@ object Diary {
 class DiaryApplication : Application() {
 
     companion object {
-        private const val WINDOW_HEIGHT = 600.0
-        private const val WINDOW_WIDTH = 800.0
+        const val WINDOW_HEIGHT = 600.0
+        const val WINDOW_WIDTH = 800.0
     }
 
     init {
